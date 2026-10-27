@@ -39,7 +39,7 @@
   "author": "飓风号 <2679689679@qq.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shusfgrs/cortico-world-diary-recall.git"
+    "url": "git+https://github.com/shusfgrs/cortico-world-diary-recall.git"
   },
   "homepage": "https://github.com/shusfgrs/cortico-world-diary-recall#readme",
   "bugs": {
