@@ -1,25 +1,30 @@
 @echo off
-chcp 65001 >nul
 cd /d "%~dp0"
+set "PATH=C:\Program Files\nodejs;%PATH%"
+set "LOG=%~dp0publish.log"
+echo [%date% %time%] ¿ªÊ¼·¢²¼ > "%LOG%"
 echo ============================================
-echo  cortico-world-diary-recall / å‘å¸ƒå‘å¯¼
+echo  cortico-world-diary-recall ·¢²¼Ïòµ¼
+echo  ÈÕÖ¾£º%LOG%
 echo ============================================
 echo.
-echo [1/2] npm loginï¼ˆæŒ‰æç¤ºåœ¨æµè§ˆå™¨é‡Œç™»å½•/è¾“å…¥éªŒè¯ç ï¼‰
-call npm login
+echo [1/2] npm login ...
+call npm login >>"%LOG%" 2>&1
+if errorlevel 1 goto fail
+echo [2/2] npm publish ...
+call npm publish >>"%LOG%" 2>&1
 if errorlevel 1 goto fail
 echo.
-echo [2/2] npm publishï¼ˆå‘å¸ƒ 0.1.0 åˆ° npmï¼‰
-call npm publish
-if errorlevel 1 goto fail
-echo.
-echo å‘å¸ƒå®Œæˆã€‚éªŒè¯ï¼šnpm view cortico-world-diary-recall version
-echo æ¥ç€å» Pal-AI-Lab/cortico-extensions å¼€ä¸€ä¸ª [sync] issueï¼Œè®©å¸‚åœºç«‹åˆ»æ”¶å½•ã€‚
+echo ·¢²¼Íê³É¡£ÑéÖ¤£ºnpm view cortico-world-diary-recall version
+echo ÍêÕûÈÕÖ¾£º%LOG%
 pause
 exit /b 0
 
 :fail
 echo.
-echo å¤±è´¥äº†ï¼šæŠŠä¸Šé¢çš„æŠ¥é”™æ•´æ®µå‘ç»™æˆ‘ï¼Œæˆ‘å¸®ä½ çœ‹ã€‚
+echo Ê§°ÜÁË£¬ÈÕÖ¾×îºó 30 ĞĞ£º
+powershell -NoProfile -Command "Get-Content -LiteralPath '%LOG%' -Tail 30"
+echo.
+echo °ÑÉÏÃæÕâ¶Î»ò %LOG% ·¢¸øÎÒ¡£
 pause
 exit /b 1

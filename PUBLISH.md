@@ -18,7 +18,7 @@ npm publish
 npm view cortico-world-diary-recall version   # 能看到 0.1.0 就算上架
 ```
 
-也可以**双击本目录的 `publish.cmd`**：它会依次执行 `npm login` 和 `npm publish`，结束后停在窗口里，方便看报错。
+也可以**双击本目录的 `publish-window.cmd`**：它会单独开一个常驻窗口跑 `npm login` + `npm publish`，出错也不会闪退；结果和完整日志在窗口里，同时写进 `publish.log`。直接双击 `publish.cmd` 也行（失败会打印日志并停住）。
 
 发布前确认：
 
