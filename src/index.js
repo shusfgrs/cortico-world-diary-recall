@@ -7,12 +7,15 @@
  * 纯 ESM JS、零依赖、不联网；不写任何记忆文件。
  */
 import { statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { CONFIG_GROUP, DEFAULTS } from './config.js';
 import { buildIndex, clampInt, findHits, loadDoc, readSlice, resolveRoot, tokenize } from './search.js';
 import { TOOL_DECLS } from './tools.js';
 
 const WORLD_ID = 'diary-recall';
 const LABEL = '记忆回查';
+/** 环境提示词模板的绝对路径；框架按 promptDocs.path 读取并渲染。 */
+const ENV_PROMPT_FILE = fileURLToPath(new URL('../ENV_PROMPT.md', import.meta.url));
 /** 单次回执的字数上限：工具结果是模型上下文，宁少勿多。 */
 const MAX_OUTPUT_CHARS = 11000;
 
@@ -46,13 +49,25 @@ export class DiaryRecallWorld {
     this.docs.clear();
   }
 
-  /** 不需要注入环境提示词：工具描述里已经写清了使用时机。 */
+  /** 环境提示词模板没有占位变量；返回空对象表示保留模板全文（返回 null 会整段省略）。 */
   envPromptVars() {
-    return null;
+    return {};
   }
 
   webUi() {
-    return { label: LABEL, config: [CONFIG_GROUP] };
+    return {
+      label: LABEL,
+      config: [CONFIG_GROUP],
+      promptDocs: [
+        {
+          key: 'worlds.diary-recall.envPrompt',
+          title: '记忆回查 · 环境提示词',
+          description: '提醒模型回忆旧事时先 recall_search、不要整篇读 handoffs。',
+          role: 'envPrompt',
+          path: ENV_PROMPT_FILE,
+        },
+      ],
+    };
   }
 
   tools() {

@@ -4,7 +4,7 @@ set "PATH=C:\Program Files\nodejs;%PATH%"
 set "LOG=%~dp0publish.log"
 echo [%date% %time%] 开始发布 > "%LOG%"
 echo ============================================
-echo  cortico-world-diary-recall 发布向导
+echo  cortico-world-diary-recall 发布向导（0.1.1）
 echo  日志：%LOG%
 echo ============================================
 echo.

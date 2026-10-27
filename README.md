@@ -6,6 +6,7 @@
 - 中文按双字词、英文/数字按单词做词面检索（不是语义检索）；
 - 命中后可以 `recall_read` 定向读那一小段核对，或继续换关键词；
 - 适合：上下文快满时回忆旧事、找约定/偏好/某天发生的事、避免整篇读 30–50 KB 的 handoff。
+- **0.1.1 起自带一段环境提示词**：启动/上下文交接后自动进系统前缀，提醒 Coo「回忆旧事优先 `recall_search`、`recall_read` 只读片段、别整篇读 handoffs」，并在控制台「提示词」页可查看与覆盖。
 
 ## 为什么需要它
 
@@ -81,7 +82,7 @@ node scripts/build-describe.mjs   # 改完 src/tools.js 后重新生成 describe
 
 发布：`npm publish`（公开包）。发布后到 [Pal-AI-Lab/cortico-extensions](https://github.com/Pal-AI-Lab/cortico-extensions) 开一个 `[sync] cortico-world-diary-recall` issue 可以让市场立刻收录（否则等索引 Action 的定时同步）。首次发布的完整步骤见仓库里的 `PUBLISH.md`，或直接双击 `publish.cmd`。
 
-作者：飓风号 &lt;2679689679@qq.com&gt; · 源码：<https://github.com/shusfgrs/cortico-world-diary-recall>。本包 0.1.0 由 DSH 协助生成。
+作者：飓风号 &lt;2679689679@qq.com&gt; · 源码：<https://github.com/shusfgrs/cortico-world-diary-recall>。本包由 DSH 协助生成。
 
 ## English
 

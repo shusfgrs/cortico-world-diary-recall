@@ -1,4 +1,4 @@
-# 发布清单（首次发布 0.1.0）
+# 发布清单（首次发布 0.1.1）
 
 > 这份文件只给仓库用，不会发布到 npm（`files` 白名单里没有它）。
 
@@ -15,7 +15,7 @@
 cd "D:\DeepSeek Harness Plug\Plugins\cortico-world-diary-recall"
 npm login
 npm publish
-npm view cortico-world-diary-recall version   # 能看到 0.1.0 就算上架
+npm view cortico-world-diary-recall version   # 能看到 0.1.1 就算上架
 ```
 
 也可以**双击本目录的 `publish-window.cmd`**：它会单独开一个常驻窗口跑 `npm login` + `npm publish`，出错也不会闪退；结果和完整日志在窗口里，同时写进 `publish.log`。直接双击 `publish.cmd` 也行（失败会打印日志并停住）。
@@ -24,7 +24,7 @@ npm view cortico-world-diary-recall version   # 能看到 0.1.0 就算上架
 
 - 包名 `cortico-world-diary-recall` 在 npm 上没被占（当前可用）；
 - `package.json` 的 `author` / `repository` 已填（现在是「飓风号 <2679689679@qq.com>」和 `shusfgrs` 的 GitHub 地址）；
-- 版本号是 `0.1.0`，`CHANGELOG.md` 顶部有 `## 0.1.0` 段。
+- 版本号是 `0.1.1`，`CHANGELOG.md` 顶部有 `## 0.1.1` 段。
 
 ### 浏览器打不开 / `npm login` 卡住时
 
@@ -66,7 +66,7 @@ GitHub 新建 public 仓库 `cortico-world-diary-recall`（账号 `shusfgrs`）�
 cd "D:\DeepSeek Harness Plug\Plugins\cortico-world-diary-recall"
 git init
 git add .
-git commit -m "feat: initial release 0.1.0"
+git commit -m "feat: initial release 0.1.1"
 git branch -M main
 git remote add origin https://github.com/shusfgrs/cortico-world-diary-recall.git
 git push -u origin main

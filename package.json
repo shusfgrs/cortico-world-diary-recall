@@ -1,6 +1,6 @@
 {
   "name": "cortico-world-diary-recall",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "只读记忆/日记关键词检索 World：给 Coopanion 的 Coo 一个 recall_search 工具，按关键词翻旧日记、只取命中片段，不必整篇读 handoffs。",
   "type": "module",
   "main": "./src/index.js",
@@ -11,6 +11,7 @@
     "src",
     "scripts",
     "assets",
+    "ENV_PROMPT.md",
     "describe.json",
     "README.md",
     "CHANGELOG.md",
