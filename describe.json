@@ -1,0 +1,91 @@
+{
+  "tools": [
+    {
+      "name": "recall_search",
+      "tags": [
+        "read"
+      ],
+      "description": "在长期记忆/日记目录（通常包含 handoffs/ 交接、partner/ 日志等）里做本地关键词检索，只返回命中行和前后几行（带 `路径:行号`），**不读整篇文件**。\n回忆旧事、找约定/偏好/某天发生的事、想省上下文时优先用它，不要直接整篇读 handoffs。\n中文按双字词、英文/数字按单词匹配；这是词面检索，不是语义理解——没结果时换更短的关键词（如「语音」→「语音」或「语音条」）、或换同义说法再试一次。\n命中后若需要更多上下文，用 recall_read 定向读那一段，不要整篇读。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "关键词。短词效果最好，例如「语音」「大肥鱼」「纳西妲」「房租」；多个词用空格分开。"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "description": "最多返回几条命中；不填用配置里的默认值（通常 8）。"
+          },
+          "path": {
+            "type": "string",
+            "description": "可选：只搜某个子目录，例如 handoffs/ 或 partner/（相对检索目录的前缀）。"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "summary": {
+        "zh": "在记忆/日记目录里按关键词找原话，只返回命中行和上下文（带 path:行号），不读整篇文件。",
+        "en": "Keyword search over the configured memory/diary folder; returns matching lines with path:line and a little context instead of whole files."
+      }
+    },
+    {
+      "name": "recall_read",
+      "tags": [
+        "read"
+      ],
+      "description": "读取记忆/日记目录里某个文件的一小段原文（带行号），用来核对 recall_search 的命中周围写了什么。\n一次最多读配置的「单次读取行数上限」（默认 200 行）；不给 endLine 时默认从 startLine 开始读 40 行。\n只能读检索目录内的文件，路径穿越会被拒绝。**不要用它整篇读文件**——需要别的内容就再 recall_search。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "相对检索目录的路径，直接复制 recall_search 结果里的路径。"
+          },
+          "startLine": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "从第几行开始（1 起）。"
+          },
+          "endLine": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "读到第几行（含）。不填则读到 startLine+39。"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "summary": {
+        "zh": "读检索结果指向的那一小段原文（带行号，最多约 200 行），用来核对命中；不能拿它整篇读文件。",
+        "en": "Read a bounded slice (with line numbers) of a file under the search folder, to verify a hit; not for reading whole files."
+      }
+    },
+    {
+      "name": "recall_stats",
+      "tags": [
+        "read"
+      ],
+      "description": "查看记忆检索的索引状态：检索目录（绝对路径）、文件数、总大小、最近扫描时间、按一级子目录的分布，以及当前的文件类型/跳过目录配置。\n资料刚更新、怀疑搜不到新内容时传 refresh=true 强制重建索引（通常不必，索引默认按「刷新间隔」自动过期）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "refresh": {
+            "type": "boolean",
+            "description": "true=立刻重建索引再统计。"
+          }
+        }
+      },
+      "summary": {
+        "zh": "看检索目录的索引状态：文件数、总大小、最近扫描时间、各子目录分布；refresh=true 可强制重扫。",
+        "en": "Show index status for the memory folder: file count, total size, last scan, per-folder breakdown; refresh=true rescans."
+      }
+    }
+  ],
+  "events": []
+}

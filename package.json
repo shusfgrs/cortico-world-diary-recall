@@ -1,0 +1,77 @@
+{
+  "name": "cortico-world-diary-recall",
+  "version": "0.1.0",
+  "description": "只读记忆/日记关键词检索 World：给 Coopanion 的 Coo 一个 recall_search 工具，按关键词翻旧日记、只取命中片段，不必整篇读 handoffs。",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "assets",
+    "describe.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "keywords": [
+    "cortico-world",
+    "cortico",
+    "coopanion",
+    "world",
+    "memory",
+    "diary",
+    "search",
+    "recall",
+    "long-term-memory"
+  ],
+  "license": "MIT",
+  "author": "飓风号 <2679689679@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shusfgrs/cortico-world-diary-recall.git"
+  },
+  "homepage": "https://github.com/shusfgrs/cortico-world-diary-recall#readme",
+  "bugs": {
+    "url": "https://github.com/shusfgrs/cortico-world-diary-recall/issues"
+  },
+  "cortico": {
+    "kind": "world",
+    "api": 6,
+    "displayName": "记忆回查",
+    "icon": "assets/icon.png",
+    "screenshots": [
+      "assets/screenshot-1.png",
+      "assets/screenshot-2.png"
+    ],
+    "locales": {
+      "zh": {
+        "displayName": "记忆回查",
+        "description": "给 Coo 一个只读的「翻旧日记」工具：在 workspace / handoffs / 日志里按关键词找原话，只把命中行和上下文交给模型，省上下文也省 token；不写记忆、不联网。"
+      },
+      "en": {
+        "displayName": "Memory Recall",
+        "description": "A read-only recall tool for Coo: keyword-search the workspace/handoffs logs and return only matching lines with path:line, so old memories can be recalled without loading whole files. Writes nothing, no network."
+      }
+    },
+    "describe": "describe.json",
+    "tags": [
+      "memory",
+      "local"
+    ]
+  },
+  "scripts": {
+    "test": "node --test",
+    "build:describe": "node scripts/build-describe.mjs"
+  }
+}
