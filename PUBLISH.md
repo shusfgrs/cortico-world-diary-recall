@@ -28,7 +28,12 @@ npm view cortico-world-diary-recall version   # 能看到 0.1.0 就算上架
 
 ### 浏览器打不开 / `npm login` 卡住时
 
-**办法 A：手动打开登录链接**——`npm login` 会在终端里打印一个登录 URL，复制到浏览器打开完成登录即可（终端会自己轮询到完成）。如果连 URL 都没有，试 `npm login --auth-type=legacy`（用户名 + 密码 + 2FA 验证码）。
+**办法 A：手动打开登录链接（最常用）**——`npm login` 会在终端/`publish.log` 里打印形如
+`https://www.npmjs.com/login?next=/login/cli/<uuid>` 的链接（一次有效、几分钟过期）。**把这段链接复制到浏览器**打开，用刚注册的账号登录/授权；窗口里会自动跳出 `Logged in as ...` 并继续发布。链接过期就重新跑一次脚本拿新链接。
+
+如果连链接都没有，试 `npm login --auth-type=legacy`（用户名 + 密码 + 2FA 验证码）。
+
+> 注意：npm 正在收紧「绕过 2FA 的 token 用于直接发布」，如果你的账号开了 2FA，优先用上面的网页登录方式；下面的 token 方式作为备选。
 
 **办法 B：用 Access Token（推荐，完全绕开浏览器交互）**
 
