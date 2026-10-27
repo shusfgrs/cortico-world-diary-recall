@@ -26,6 +26,23 @@ npm view cortico-world-diary-recall version   # 能看到 0.1.0 就算上架
 - `package.json` 的 `author` / `repository` 已填（现在是「飓风号 <2679689679@qq.com>」和 `shusfgrs` 的 GitHub 地址）；
 - 版本号是 `0.1.0`，`CHANGELOG.md` 顶部有 `## 0.1.0` 段。
 
+### 浏览器打不开 / `npm login` 卡住时
+
+**办法 A：手动打开登录链接**——`npm login` 会在终端里打印一个登录 URL，复制到浏览器打开完成登录即可（终端会自己轮询到完成）。如果连 URL 都没有，试 `npm login --auth-type=legacy`（用户名 + 密码 + 2FA 验证码）。
+
+**办法 B：用 Access Token（推荐，完全绕开浏览器交互）**
+
+1. 浏览器打开 <https://www.npmjs.com/> → 右上角头像 → **Access Tokens** → **Generate New Token**；
+2. 选 **Classic Token → Automation**（自动化 token，发布时不问 OTP）；
+   如果只能建 Granular Token，就选 **All packages** + **Read and write**；
+3. 生成后复制 token（只显示一次）；
+4. 在本目录新建 `.npmrc`（可以直接复制 `npmrc.example` 改名），写入一行：
+   ```
+   //registry.npmjs.org/:_authToken=你的token
+   ```
+5. 双击 **`publish-token.cmd`**（只跑 `npm publish`，不用登录）；
+6. 发布完可以把 token 在 npm 设置里撤销；`.npmrc` 已写进 `.gitignore`，不会被提交。
+
 ## 2. 让扩展市场立刻收录
 
 市场按 npm 上的 `cortico-world` 关键字抓包；定时任务可能延迟。要立刻收录就去官方索引仓开一个 issue：

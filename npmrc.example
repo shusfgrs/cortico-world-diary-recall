@@ -1,0 +1,2 @@
+# 复制本文件为 .npmrc，把 <TOKEN> 换成 npm 的 Access Token（Automation 或 All packages / Read and write）
+//registry.npmjs.org/:_authToken=<TOKEN>
